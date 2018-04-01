@@ -1,17 +1,65 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en-us">
-
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width = device-width, initial-scale = 1">
         <title>Adam Schnicker's Psychic-Game</title>
-        <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
-        <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     </head>
     
 <body>
 
+    <h1>The Psychic Game</h1>
+
+    <div id="game">
+        <p>Guess what letter I'm thinking of</p>
+    </div>
+   
+<script type="text/javascript">
+
+// Identify the choices in an array that the program can randomly select from //
+    var options = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+    var wins = 0;
+    var losses = 0;
+    var guessCount = 9;
+    var guessList = 0;
+
+//Capture the keystroke from the user/
+        document.onkeyup = function() {
+            var userguess = String.fromCharCode(event.keyCode).toLowerCase();
+
+            console.log(userguess);
+
+//Tell the program to select a random letter//
+            var computerGuess = options[Math.floor(Math.random()*options.length)];
+
+            console.log(computerGuess);
+
+            if (userguess=="a" || userguess=="b" || userguess=="c" || userguess=="d" || userguess=="e" || userguess=="f" || userguess=="g" || userguess=="h" || userguess=="i" || userguess=="j" || userguess=="k" || userguess=="l" || userguess=="m" || userguess=="n" || userguess=="o" || userguess=="p" || userguess=="q" || userguess=="r" || userguess=="s" || userguess=="t" || userguess=="u" || userguess=="v" || userguess=="w" || userguess=="x" || userguess=="y" || userguess=="z") {
+                if ((userguess==computerGuess)) {
+                    wins++
+                }
+                if ((userguess!==computerGuess)) {
+                    guessCount--
+                }
+                if ((guessCount===0)) {
+                    losses++
+                    alert("You have run out of guesses");
+                }
+            } else {
+                alert("You have run out of guesses");
+                
+            }
+
+            var html = "<p>Guess what letter I'm thinking of</p>" +
+            "<p>Wins: " + wins + "</p>" +
+            "<p>Losses: " + losses + "</p>" +
+            "<p>Guesses Left: " + guessCount + "</p>" +
+            "<p>Your Guesses so far: " + userguess + "</p>";
+
+            document.querySelector("#game").innerHTML = html;
+
+            }
+
+    </script>
 
 </body>
-
 </html>
